@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+</head>
+
+<body>
+  <form  id="registration_form" >
+    <div class="container">
+      <div class="center">
+        <h1><span> NIC</span> Registration Form</h1>
+        <label>Enter your name</label>
+        <input type="alphabet" class="name" id="name">
+        <error id="alert_name">Invalid Name</error>
+        <error id="ilert"></error>
+        <error id="alerti"></error>
+
+        <error id="alert names"></error>
+        <error id="alert namess"></error>
+        <label>Enter e-mail </label>
+        <input type="text" id="email">
+        <error id="alert_e-mail">Invalid Email</error>
+        <error id="alertii_e-mail"></error>
+
+        <error id="alert e-mails"></error>
+        <label> Enter phone number</label>
+        <input type="number" class="phone" id="phone">
+        <error id="alert_no">Invalid Phone Number</error>
+        <error id="alert nos"></error>
+        <error id="alerti no"></error>
+
+        <label> Enter your CNIC</label>
+        <input type="number" class="nic" id="nic">
+        <error id="alert_nic">Invalid CNIC</error>
+        <error id="alert_nicss"></error>
+
+        <error id="alert nics"></error>
+        <label> Enter last qualification degree name</label>
+        <input type="text" class="degree" id="degree">
+        <error id="alert_degree">Invalid</error>
+        <error id="alert_degrees"></error>
+        <error id="alert degreess"></error>
+
+        <button type="submit"  >submit</button>
+      </div>
+    </div>
+  </form>
+
+</body>
+<script>
+  $(function () {
+    // Enter your name
+    $("#alert_name").hide();
+    var error_fname = false;
+    $("#name").focusout(function () {
+      check_name();
+    });
+    function check_name() {
+      var pattern = /^[a-zA-Z]*$/;
+      var fname = $("#name").val();
+      if (pattern.test(fname) && fname != '') {
+        $("#name").css("border", "2px solid #34F458");
+        $("#alert_name").hide();
+        $("#ilert").html("");
+        error_fname = false;
+
+
+      }
+      else {
+        $("#ilert").html("Only contain alphabet and space are not allowed");
+        $("#alert_name").show();
+        $("#name").css("border", "2px solid #F90A0A");
+
+        error_fname = true;
+      }
+    }
+
+
+
+
+
+    // enter e-mail
+    $("#alert_e-mail").hide();
+    var error_email = false;
+    $("#email").focusout(function () {
+      check_email();
+    });
+    function check_email() {
+      var patterns = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+      var email = $("#email").val();
+      if (patterns.test(email) && email !== '') {
+        $("#email").css("border", "2px solid #34F458");
+        $("#alert_e-mail").hide();
+        $("#alertii_e-mail").html("");
+        error_email = false;
+      
+
+      }
+      else {
+        $("#alertii_e-mail").html("Email pattern like (name@gmail.com)");
+        $("#email").css("border", "2px solid #F90A0A");
+        $("#alert_e-mail").show();
+        error_email = true;
+      }
+    }
+
+
+    //  enter phone
+    $("#alert_no").hide();
+    var error_phone = false;
+    $("#phone").focusout(function () {
+      check_no();
+    });
+    function check_no(){
+      var phones= $("#phone").val().length;
+      if (phones==11) {
+        $("#phone").css("border", "2px solid #34F458");
+        $("#alert_no").hide();
+        $("#alertss").html("");
+        error_phone = false;
+
+      }
+      else {
+        $("#alert_no").show();
+        $("#phone").css("border", "2px solid #F90A0A");
+        error_phone = true;
+      }
+    }
+
+
+        //  enter NIC
+   $("#alert_nic").hide();
+   var error_nic = false;
+    $("#nic").focusout(function () {
+      check_number();
+    });
+    function check_number(){
+      var nic= $("#nic").val().length;
+      if (nic==14) {
+        $("#nic").css("border", "2px solid #34F458");
+        $("#ilert").html("");
+
+        $("#alert_nic").hide();
+        $("#alert_nicss").html("");
+        error_nic = false;
+
+      }
+      else {
+        $("#nic").css("border", "2px solid #F90A0A");
+        $("#alert_nic").show();
+        $("#alert_nicss").html("Only contain number and space or dash are not allowed");
+        error_nic = true;
+      }
+    }
+
+      //  enter degree
+      $("#alert_degree").hide();
+    var error_degree = false;
+    $("#degree").focusout(function () {
+      check_degree();
+    });
+    function check_degree() {
+      var pattern = /^[a-zA-Z]*$/;
+      var fdegree = $("#degree").val();
+      if (pattern.test(fdegree) && fdegree != '') {
+        $("#degree").css("border", "2px solid #34F458");
+        $("#alert_degree").hide();
+        $("#alert_degrees").html("");
+        error_fdegree = false;
+
+      }
+      else {
+        $("#alert_degrees").html("Only contain alphabet and space are not allowed");
+        $("#alert_degree").show();
+        $("#degree").css("border", "2px solid #F90A0A");
+        error_fdegree = true;
+      }
+    }
+    $("#registration_form").submit(function(){
+        error_fname = false;
+        error_email = false;
+        error_phone = false;
+        error_nic = false;
+        error_fdegree = false;
+
+        check_name();
+        check_email();
+        check_no();
+        check_number();
+        check_degree();
+
+        if( error_fname === false &&  error_email === false &&  error_phone === false &&  error_nic === false &&  error_fdegree === false){
+          alert("Registration successfull");
+          return true;
+        }
+        else{
+          alert("please fill the form correctely");
+           return false;
+        }
+
+       })
+   
+   })
+</script>
+
+</html>
